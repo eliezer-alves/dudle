@@ -14,10 +14,10 @@ function App() {
   }
 
   return (
-    <div>
-      <button onClick={teste}>oi</button>
-    </div>
-  );
+    <h1 className="text-blue-700 text-3xl font-bold">
+      Hello world!
+    </h1>
+  )
 }
 
 export default App;
