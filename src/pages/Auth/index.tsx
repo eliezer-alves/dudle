@@ -1,6 +1,7 @@
 import googleIconImg from './images/google-icon.svg';
 import githubIconImg from './images/github-icon.svg';
-import illustrationImg from './images/illustration.svg';
+// import illustrationImg from './images/illustration.svg';
+import illustrationImg from './images/developer.svg';
 
 import { Button } from '../../components/Button';
 
