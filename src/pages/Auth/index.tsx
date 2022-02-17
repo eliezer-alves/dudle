@@ -1,11 +1,23 @@
 import googleIconImg from './images/google-icon.svg';
 import githubIconImg from './images/github-icon.svg';
-// import illustrationImg from './images/illustration.svg';
 import illustrationImg from './images/developer.svg';
 
+import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
+	const navigate = useNavigate();
+	const { user, signInWithGoogle } = useAuth();
+
+  async function handleSignInWithGoogle() {
+    if(!user?.google) {
+      await signInWithGoogle();
+    }
+
+    navigate('/home');
+  }
+
   return (
     <div className='flex flex-row h-full p-24'>      
       <aside className='w-1/2 flex flex-col gap-12 items-center justify-center p-10'>
@@ -15,7 +27,7 @@ export function Login() {
       <main className='w-1/2 flex items-center justify-center'>
         <div className='w-2/3 min-h-1/3 gap-2 flex flex-col items-center justify-center p-10 bg-gray-eli-2 rounded-md'>
           <span className='pb-4 text-purple-eli-4 font-bold'>ENTRAR COM</span>
-          <Button>
+          <Button onClick={handleSignInWithGoogle}>
             <img width="20px" src={googleIconImg} alt="Sign in with Google"/>
             Google
           </Button>
