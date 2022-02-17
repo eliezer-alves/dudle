@@ -1,5 +1,5 @@
-import googleIconImg from './images/google-icon.svg';
-import githubIconImg from './images/github-icon.svg';
+import googleIcon from './images/google-icon.svg';
+import githubIcon from './images/github-icon.svg';
 import illustrationImg from './images/developer.svg';
 
 import { useAuth } from '../../hooks/useAuth';
@@ -37,11 +37,11 @@ export function Login() {
         <div className='w-2/3 min-h-1/3 gap-2 flex flex-col items-center justify-center p-10 bg-gray-eli-2 rounded-md'>
           <span className='pb-4 text-purple-eli-4 font-bold'>ENTRAR COM</span>
           <Button onClick={handleLoginWithGoogle}>
-            <img width="20px" src={googleIconImg} alt="Sign in with Google"/>
+            <img width="20px" src={googleIcon} alt="Sign in with Google"/>
             Google
           </Button>
           <Button onClick={handleLoginWithGithub}>
-            <img width="30px" src={githubIconImg} alt="Sign in with GitHub"/>
+            <img width="30px" src={githubIcon} alt="Sign in with GitHub"/>
             GitHub
           </Button>
         </div>
