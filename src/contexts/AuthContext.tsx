@@ -3,14 +3,15 @@ import { firebase, auth } from '../services/firebase';
 
 type User = {
 	id: string;
+  provider: string;
 	name: string;
 	avatar: string;
-  google: boolean | undefined;
 }
 
 type AuthContextType = {
 	user: User | undefined;
 	signInWithGoogle: () => void;
+	signInWithGithub: () => void;
 	logout: () => void;
 }
 
@@ -24,7 +25,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
 
   const handleSetUser = (firebaseUser: any) => {
-		const { displayName, photoURL, uid } = firebaseUser;
+		const { displayName, photoURL, uid, providerData } = firebaseUser;
 
 		if (!displayName || !photoURL) {
 			throw new Error('Missing information from Google Account.');
@@ -32,9 +33,9 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
 		setUser({
 			id: uid,
+      provider: providerData[0]?.providerId.split('.')[0],
 			name: displayName,
 			avatar: photoURL,
-      google: true,
 		});
 	}
 
@@ -53,7 +54,18 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   async function signInWithGoogle() {
 		const provider = new firebase.auth.GoogleAuthProvider();
 
-		const result = await auth.signInWithPopup(provider)
+		const result = await auth.signInWithPopup(provider);
+
+		if (result.user) {
+			handleSetUser(result.user);
+		}
+	}
+  
+  async function signInWithGithub() {
+		const provider = new firebase.auth.GithubAuthProvider();
+
+		const result = await auth.signInWithPopup(provider);
+    
 
 		if (result.user) {
 			handleSetUser(result.user)
@@ -71,7 +83,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 	}
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle, logout }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, signInWithGithub, logout }}>
       {props.children}
     </AuthContext.Provider>
   )

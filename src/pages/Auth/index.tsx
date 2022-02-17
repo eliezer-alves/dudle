@@ -8,14 +8,23 @@ import { useNavigate } from 'react-router-dom';
 
 export function Login() {
 	const navigate = useNavigate();
-	const { user, signInWithGoogle } = useAuth();
+	const { user, signInWithGoogle, signInWithGithub } = useAuth();
 
-  async function handleSignInWithGoogle() {
-    if(!user?.google) {
+  async function handleLoginWithGoogle() {
+    if(!user) {
       await signInWithGoogle();
     }
 
     navigate('/home');
+  }
+  
+  async function handleLoginWithGithub() {
+    if(!user) {
+      await signInWithGithub();
+    }
+
+    navigate('/home');
+    
   }
 
   return (
@@ -27,11 +36,11 @@ export function Login() {
       <main className='w-1/2 flex items-center justify-center'>
         <div className='w-2/3 min-h-1/3 gap-2 flex flex-col items-center justify-center p-10 bg-gray-eli-2 rounded-md'>
           <span className='pb-4 text-purple-eli-4 font-bold'>ENTRAR COM</span>
-          <Button onClick={handleSignInWithGoogle}>
+          <Button onClick={handleLoginWithGoogle}>
             <img width="20px" src={googleIconImg} alt="Sign in with Google"/>
             Google
           </Button>
-          <Button>
+          <Button onClick={handleLoginWithGithub}>
             <img width="30px" src={githubIconImg} alt="Sign in with GitHub"/>
             GitHub
           </Button>

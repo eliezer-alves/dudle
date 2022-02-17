@@ -17,8 +17,7 @@ export function Home() {
         <div className="flex items-center gap-4">
           <h1 className="text-3xl font-bold">Olá, {user?.name.split(' ')[0]}</h1>
           <span>
-            você acabou de logar com
-            <strong>{user?.google ? 'Google' : ''}</strong>
+            você acabou de logar com <strong>{user?.provider}</strong>
           </span>
         </div>
         <button onClick={handleLogout}>Sair daqui</button>
