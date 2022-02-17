@@ -14,7 +14,7 @@ export function Login() {
       </aside>
       <main className='w-1/2 flex items-center justify-center'>
         <div className='w-2/3 min-h-1/3 gap-2 flex flex-col items-center justify-center p-10 bg-gray-eli-2 rounded-md'>
-          <span className='pb-4 text-purple-eli-2 font-bold'>ENTRAR COM</span>
+          <span className='pb-4 text-purple-eli-4 font-bold'>ENTRAR COM</span>
           <Button>
             <img width="20px" src={googleIconImg} alt="Sign in with Google"/>
             Google
