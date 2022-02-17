@@ -1,23 +1,17 @@
-import { database } from './services/firebase';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Login } from './pages/Auth';
 
 
 
 function App() {
 
-  async function teste()
-  {
-		database.ref(`teste`).push({
-			teste: "teste"
-		}).then(resp => {
-      console.log(resp);      
-    });
-  }
-
   return (
-    <h1 className="text-blue-700 text-3xl font-bold">
-      Hello world!
-    </h1>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
