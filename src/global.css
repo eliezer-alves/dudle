@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&family=Teko:wght@300;400;500;600;700&family=Ubuntu+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&family=Teko&family=Ubuntu+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
 /*
 	font-family: 'Poppins', sans-serif;
@@ -9,6 +11,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link-eli {
+	@apply hover:cursor-pointer hover:scale-105 ease-in-out duration-200;
+}
+
+.link-eli-2 {
+	@apply hover:cursor-pointer hover:scale-125 ease-in-out duration-200;
+}
 
 * {
 	margin: 0;
