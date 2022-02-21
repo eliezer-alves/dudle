@@ -10,7 +10,7 @@ export function Posts() {
   const { user } = useAuth();
   const [newPost, setNewPost] = useState('');
   const [newPostTitle, setNewPostTitle] = useState('');
-  const { posts } = usePost();
+  const { posts } = usePost(user?.id);
 
   async function handleSendPost(e: FormEvent) {
 		e.preventDefault()
@@ -47,31 +47,29 @@ export function Posts() {
           <h3 className="text-xl font-bold">{user?.name}</h3>
         </section>
         <main className="w-3/4 flex flex-col gap-16 overflow-visible">
-          <div>
+          <section className="p-10 flex flex-col gap-4 bg-gray-eli-2 rounded-md">
             <h1 className="text-2xl font-bold">Novo Post</h1>
-            <section className="mt-4 p-10 flex flex-col gap-4 bg-gray-eli-2 rounded-md">
-              <form onSubmit={handleSendPost} className="w-full flex flex-col gap-2">
-                <input              
-                  placeholder="Título"
-                  type="text" value={newPostTitle}
-                  onChange={e => setNewPostTitle(e.target.value)}
-                  required
-                  className="w-full input-eli"
-                />
-                <textarea
-                  placeholder="..."
-                  rows={5}
-                  value={newPost}
-                  onChange={e => setNewPost(e.target.value)}
-                  required
-                  className="w-full input-eli"
-                />
-                <div className="form-footer py-2">
-                  <Button type="submit" disabled={!user}>Enviar Post</Button>
-                </div>
-              </form>
-            </section>
-          </div>
+            <form onSubmit={handleSendPost} className="w-full flex flex-col gap-2">
+              <input              
+                placeholder="Título"
+                type="text" value={newPostTitle}
+                onChange={e => setNewPostTitle(e.target.value)}
+                required
+                className="w-full input-eli"
+              />
+              <textarea
+                placeholder="..."
+                rows={5}
+                value={newPost}
+                onChange={e => setNewPost(e.target.value)}
+                required
+                className="w-full input-eli"
+              />
+              <div className="form-footer py-2">
+                <Button type="submit" disabled={!user}>Enviar Post</Button>
+              </div>
+            </form>
+          </section>
 
           <section>
             <h1 className="text-2xl font-bold">Meus Posts</h1>
@@ -92,7 +90,7 @@ export function Posts() {
             })
           }
           </section>
-          </main>
+        </main>
       </div>
     </Page>
   )

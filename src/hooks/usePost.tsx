@@ -23,14 +23,20 @@ type PostType =  {
   post: string;
 };
 
-export function usePost() {
+export function usePost(userId: string|undefined) {
 	const { user } = useAuth();
  	const [posts, setPosts] = useState<PostType[]>([]);
 
 	useEffect(() => {
-		const postRef = database.ref('posts');
+		var postRef = database.ref("posts");
+		var postQuery = undefined;
+		if (userId) {
+			postQuery = postRef.orderByChild("author/userId").equalTo(userId);
+		} else {
+			postQuery = postRef;
+		}
 
-		postRef.on('value', post => {
+		postQuery.on('value', post => {
 			const databasePost = post.val();
 			const firebasePosts: FirebasePosts = databasePost ?? {};
 			const parsedPosts = Object.entries(firebasePosts).map(([key, value]) => {
