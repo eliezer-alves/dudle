@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { firebase, auth } from '../services/firebase';
 
 type User = {
@@ -13,6 +14,7 @@ type AuthContextType = {
 	signInWithGoogle: () => void;
 	signInWithGithub: () => void;
 	logout: () => void;
+	handleNavigate: (service: string) => void;
 }
 
 type AuthContextProviderProps = {
@@ -22,6 +24,7 @@ type AuthContextProviderProps = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
+	const navigate = useNavigate();
   const [user, setUser] = useState<User>();
 
   const handleSetUser = (firebaseUser: any) => {
@@ -82,8 +85,16 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 		setUser(undefined);
 	}
 
+	async function handleNavigate(service: string) {
+		if (user) {
+			return navigate(`/${service}`);
+		}
+
+		return navigate('/');
+	}
+
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle, signInWithGithub, logout }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, signInWithGithub, logout, handleNavigate }}>
       {props.children}
     </AuthContext.Provider>
   )

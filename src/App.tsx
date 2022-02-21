@@ -3,6 +3,7 @@ import { AuthContextProvider } from './contexts/AuthContext';
 
 import { Login } from './pages/Auth';
 import { Home } from './pages/Home';
+import { Posts } from './pages/Posts';
 
 
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/home' element={<Home />} />
+          <Route path='/posts' element={<Posts />} />
         </Routes>
       </AuthContextProvider>
     </BrowserRouter>
