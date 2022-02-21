@@ -48,3 +48,27 @@ button,
 textarea {
 	font: 400 16px "Roboto", sans-serif;
 }
+
+.separator {
+	font-size: 14x;
+	color: #a8a8b3;
+	margin: 24px 0;
+	display: flex;
+	align-items: center;
+}
+.separator::before {
+	content: '';
+	flex: 1;
+	height: 1px;
+	/* background: #a8a8b3; */
+	background-image: linear-gradient(to left, #a8a8b3, rgb(18, 18, 20));
+	margin-right: 16px;
+}
+.separator::after {
+	content: '';
+	flex: 1;
+	height: 1px;
+	/* background: #a8a8b3; */
+	background-image: linear-gradient(to right, #a8a8b3, rgb(18, 18, 20));
+	margin-left: 16px;
+}
