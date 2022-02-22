@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { usePost } from "../../hooks/usePost";
-import { database } from '../../services/firebase';
+import { database, firebase } from '../../services/firebase';
 import { Button } from "../../components/Button";
 import { Page } from "../../components/Page";
 import { Post } from "../../components/Post";
@@ -24,14 +24,15 @@ export function Posts() {
 			throw new Error('You must be logged in.')
 		}
 
-    const post = {
+    var post = {
 			title: newPostTitle,
       post: newPost,
 			author: {
         userId: user.id,
 				name: user.name,
 				avatar: user.avatar,
-			}
+			},
+      createdAt: firebase.database.ServerValue.TIMESTAMP,
 		}
 
 		await database.ref(`posts/`).push(post);
@@ -79,9 +80,10 @@ export function Posts() {
                 <>
                   <Post
                     id={post.id}
-                    author={post.author}
                     title={post.title}
                     post={post.post}
+                    author={post.author}
+                    createdAt={post.createdAt}
                   >
                   </Post>
                   {posts[index+1] && (<div className="separator">+</div>)}
