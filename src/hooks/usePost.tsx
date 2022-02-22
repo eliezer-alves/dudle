@@ -25,7 +25,7 @@ type PostType =  {
 	createdAt: string;
 };
 
-export function usePost(userId: string|undefined) {
+export function usePost(userId: string|undefined = undefined) {
 	const { user } = useAuth();
  	const [posts, setPosts] = useState<PostType[]>([]);
 
