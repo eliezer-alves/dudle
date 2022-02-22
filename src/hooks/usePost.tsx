@@ -57,7 +57,7 @@ export function usePost(userId: string|undefined = undefined) {
 				}
 			});
 
-			setPosts(parsedPosts);
+			setPosts(parsedPosts.reverse());
 		});
 
 		return () => {

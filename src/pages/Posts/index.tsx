@@ -84,6 +84,7 @@ export function Posts() {
                     post={post.post}
                     author={post.author}
                     createdAt={post.createdAt}
+                    myPost={true}
                   >
                   </Post>
                   {posts[index+1] && (<div className="separator">+</div>)}

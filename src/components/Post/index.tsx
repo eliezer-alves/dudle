@@ -11,18 +11,23 @@ type PostProps = {
 	};
   createdAt: string;
   children?: ReactNode;
+  myPost?: boolean;
 }
-export function Post({ id, title, post, author, createdAt, children }: PostProps) {
+export function Post({ id, title, post, author, createdAt, myPost = false, children }: PostProps) {
   console.log(createdAt);
   
   return (
     <div className="mt-4 p-10 pt-5 flex flex-col gap-4 bg-gray-eli-2 rounded-md">
       <div className="mb-5 flex justify-between items-end">
         <span className="flex items-end gap-4">
-          <img src={author.avatar} alt="Author of the post" className="rounded-full w-12 h-12"/>
-          {author.name}
+          {!myPost && (
+            <>
+              <img src={author.avatar} alt="Author of the post" className="rounded-full w-12 h-12"/>
+              {author.name}
+            </>
+          )}
         </span>
-        <span>{createdAt}</span>
+        <span className="flex-end">{createdAt}</span>
       </div>
       <h1 className="text-2xl font-bold">{title}</h1>
       <span>{post}</span>
