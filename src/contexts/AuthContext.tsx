@@ -67,8 +67,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   async function signInWithGithub() {
 		const provider = new firebase.auth.GithubAuthProvider();
 
-		const result = await auth.signInWithPopup(provider);
-    
+		const result = await auth.signInWithPopup(provider);    
 
 		if (result.user) {
 			handleSetUser(result.user)

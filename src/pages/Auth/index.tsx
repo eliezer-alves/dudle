@@ -12,20 +12,13 @@ export function Login() {
 	const { user, signInWithGoogle, signInWithGithub } = useAuth();
 
   async function handleLoginWithGoogle() {
-    if(!user) {
-      await signInWithGoogle();
-    }
-
+    await signInWithGoogle();
     navigate('/home');
   }
   
   async function handleLoginWithGithub() {
-    if(!user) {
-      await signInWithGithub();
-    }
-
-    navigate('/home');
-    
+    await signInWithGithub();
+    navigate('/home');    
   }
 
   return (
