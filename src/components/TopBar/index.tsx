@@ -20,8 +20,8 @@ export function TopBar() {
         <ul style={{fontFamily: 'Orbitron'}} className="flex gap-8">
           <li className="link-eli" onClick={ () => handleNavigate('home')}>home</li>
           <li className="link-eli" onClick={ () => handleNavigate('posts')}>posts</li>
-          <li className="link-eli" onClick={ () => handleNavigate('turing-machine')}>turing machine</li>
-          <li className="link-eli">page 3</li>
+          <li className="link-eli" onClick={ () => handleNavigate('turing-machine')}>page 3</li>
+          <li className="link-eli">page 4</li>
         </ul>
       </div>
       <img onClick={handleLogout} src={logoutIcon} alt="Sair da plataforma" className="link-eli-2"/>
